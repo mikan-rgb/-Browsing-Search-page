@@ -2,9 +2,9 @@
   "name": "anonymous-proxy",
   "version": "1.0.0",
   "description": "匿名プロキシサーバー",
-  "main": "proxy-server.js",
+  "main": "proxy-server_Version2.js",
   "scripts": {
-    "start": "node proxy-server.js"
+    "start": "node proxy-server_Version2.js"
   },
   "dependencies": {
     "express": "^4.18.2",
