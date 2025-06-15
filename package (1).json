@@ -1,0 +1,13 @@
+{
+  "name": "anonymous-proxy",
+  "version": "1.0.0",
+  "description": "匿名プロキシサーバー",
+  "main": "proxy-server.js",
+  "scripts": {
+    "start": "node proxy-server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^2.6.7"
+  }
+}
