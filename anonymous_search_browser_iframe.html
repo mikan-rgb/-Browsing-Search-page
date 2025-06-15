@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>匿名検索ブラウザ（アプリ内表示）</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #181820; color: #fff; text-align: center; margin: 0; }
+    input, button { font-size: 1.2em; padding: .5em; }
+    input[type="text"] { width: 65%; }
+    .mini { font-size: .9em; color: #aaa; margin: 1em 0 0 0; }
+    #viewer { width: 100vw; height: 80vh; border: none; margin-top: 1em; }
+    form { margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <h1>匿名検索ブラウザ</h1>
+  <form id="searchForm" autocomplete="off">
+    <input type="text" id="query" placeholder="検索ワードまたはURL" autofocus required />
+    <button type="submit">検索</button>
+  </form>
+  <div class="mini">
+    ※履歴やCookieは保存されません。<br>
+    検索結果やURLは下部に埋め込み表示されます。
+  </div>
+  <iframe id="viewer"></iframe>
+  <script>
+    const viewer = document.getElementById('viewer');
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const q = document.getElementById('query').value.trim();
+
+      // URLなら直接iframeで表示
+      if (/^(https?:\/\/)?[a-z0-9.-]+\.[a-z]{2,}/i.test(q)) {
+        let url = q;
+        if (!/^https?:\/\//i.test(q)) url = 'https://' + q;
+        viewer.src = url;
+        return;
+      }
+
+      // 検索（Googleの検索結果をiframeに表示、API不要）
+      const searchURL = 'https://www.google.com/search?q=' + encodeURIComponent(q);
+      viewer.src = searchURL;
+    });
+  </script>
+</body>
+</html>
